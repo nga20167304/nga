@@ -26,8 +26,10 @@ class PageController extends Controller
         return view('page.loaisanpham',compact('sp_theoloai','sp_khac','loai','loai_sp'));
     }
 
-    public function getDetail(){
-        return view('page.detail');
+    public function getDetail(Request $req){
+        $sanpham=Product::where('id',$req->id)->first();
+        $sp_tuongtu=Product::where('id_type',$sanpham->id_type)->paginate(6);
+        return view('page.detail',compact('sanpham','sp_tuongtu'));
     }
 
     public function getContact(){
