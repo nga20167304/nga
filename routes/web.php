@@ -39,3 +39,8 @@ Route::get('gioi-thieu',[
     'as'=>'gioiThieu',
     'uses'=>'PageController@getAbout'
     ]);
+
+Route::get('add-to-cart/{id}',[
+    'as'=>'themGioHang',
+    'uses'=>'PageController@getAddToCart'
+]);

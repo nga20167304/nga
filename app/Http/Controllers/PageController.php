@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Slide;
 use App\Product;
 use App\TypeProduct;
+use App\Cart;
+use Session;
 
 class PageController extends Controller
 {
@@ -38,5 +40,14 @@ class PageController extends Controller
 
     public function getAbout(){
         return view('page.about');
+    }
+
+    public function getAddToCart(Request $req,$id){
+        $product=Product::find($id);//tìm xem có sản phẩm với tương ứng id hay không
+        $oldCart=Session('cart')?Session::get('cart'):null;//Nếu có thì lấy thông tin sản phẩm, không thì = null
+        $cart=new Cart($oldCart);//Khởi tạo giỏ hàng 
+        $cart->add($product,$id);//Thêm phần từ vào giỏ hàng
+        $req->session()->put('cart',$cart);//Gán cart vào session
+        return redirect()->back();
     }
 }
