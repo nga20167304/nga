@@ -44,3 +44,8 @@ Route::get('add-to-cart/{id}',[
     'as'=>'themGioHang',
     'uses'=>'PageController@getAddToCart'
 ]);
+
+Route::get('del-cart/{id}',[
+    'as'=>'xoaGioHang',
+    'uses'=>'PageController@getDelItemCart'
+]);

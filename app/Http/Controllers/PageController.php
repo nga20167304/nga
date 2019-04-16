@@ -50,4 +50,16 @@ class PageController extends Controller
         $req->session()->put('cart',$cart);//Gán cart vào session
         return redirect()->back();
     }
+
+    public function getDelItemCart($id){//id của sản phẩm muốn xóa
+        $oldCart=Session::has('cart')?Session::get('cart'):NULL;//Kiểm tra có hay không
+        $cart=new Cart($oldCart);
+        $cart->removeItem($id);
+        //Kiểm tra để xóa đơn hàng
+        if(count($cart->items)>0){
+            Session::put('cart',$cart);
+        }
+        else Session::forget('cart');
+        return redirect()->back();
+    }
 }
