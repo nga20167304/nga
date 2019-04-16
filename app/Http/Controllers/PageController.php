@@ -151,4 +151,11 @@ class PageController extends Controller
         return redirect()->back()->with('success','Đã tạo tài khoản thành công');
         
     }
+
+    public function getSearch(Request $req){
+        $product=Product::where('name','like','%'.$req->key.'%')
+                        ->orWhere('unit_price',$req->key)
+                        ->get();
+        return view('page.search',compact('product'));
+    }
 }

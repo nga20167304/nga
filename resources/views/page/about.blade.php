@@ -8,7 +8,7 @@
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb font-large">
-					<a href="index.html">Home</a> / <span>Giới thiệu</span>
+					<a href="{{route('trang-chu')}}">Home</a> / <span>Giới thiệu</span>
 				</div>
 			</div>
 			<div class="clearfix"></div>
