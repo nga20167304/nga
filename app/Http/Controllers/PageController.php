@@ -11,6 +11,8 @@ use Session;
 use App\Customer;
 use App\Bills;
 use App\BillDetail;
+use App\User;
+use Hash;
 
 class PageController extends Controller
 {
@@ -109,5 +111,44 @@ class PageController extends Controller
 
         Session::forget('cart');
         return redirect()->back()->with('thongBao','Đặt hàng thành công');
+    }
+
+    public function getLogin(){
+        return view('page.dangnhap');
+    }
+
+    public function getSignUp(){
+        return view('page.dangky');
+    }
+
+    public function postSignUp(Request $req){
+        $this->validate($req,
+        [
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required|min:6|max:20',
+            'fullname'=>'required',
+            're_password'=>'required|same:password'
+        ],
+        [
+            'email.required'=>'Vui lòng nhập email',
+            'email.email'=>'Không đúng định daijng email',
+            'email.enique'=>'Email này đã được sử dụng',
+            'password.required'=>'Vui lòng nhập mật khẩu',
+            'password.min'=>'Mật khẩu tối thiểu 6 kí tự',
+            'password.max'=>'Mật khẩu tối đa 20 kí tự',
+            'fullname.required'=>'Hãy nhập vào họ tên',
+            're_password.required'=>'Hãy nhập lại mật khẩu',
+            're_password.same'=>'Mật khẩu không giống nhau'
+        ]     
+        );
+        $user=new User;
+        $user->full_name=$req->fullname;
+        $user->address=$req->address;
+        $user->phone=$req->phone;
+        $user->password=Hash::make($req->password);//mã hóa mật khẩu
+        $user->save();
+
+        return redirect()->back()->with('success','Đã tạo tài khoản thành công');
+        
     }
 }

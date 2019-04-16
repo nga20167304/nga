@@ -59,3 +59,18 @@ Route::post('dat-hang',[
     'as'=>'datHang',
     'uses'=>'PageController@postCheckOut'
 ]);
+
+Route::get('dang-nhap',[
+    'as'=>'login',
+    'uses'=>'PageController@getLogin' 
+]);
+
+Route::get('dang-ky',[
+    'as'=>'signup',
+    'uses'=>'PageController@getSignUp'
+]);
+
+Route::post('dang-ky',[
+    'as'=>'signup',
+    'uses'=>'PageController@postSignUp'
+]);
