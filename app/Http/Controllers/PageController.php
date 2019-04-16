@@ -8,6 +8,9 @@ use App\Product;
 use App\TypeProduct;
 use App\Cart;
 use Session;
+use App\Customer;
+use App\Bills;
+use App\BillDetail;
 
 class PageController extends Controller
 {
@@ -61,5 +64,50 @@ class PageController extends Controller
         }
         else Session::forget('cart');
         return redirect()->back();
+    }
+
+    public function getCheckOut(){
+        if(Session('cart')){
+            $oldCart=Session::get('cart');
+            $cart=new Cart($oldCart);
+            return view('page.dat_hang',['cart'=>Session::get('cart'),'product_cart'=>$cart->items,'totalPrice'=>$cart->totalPrice,'totalQty'=>$cart->totalQty]);
+        }
+        else return view('page.dat_hang');
+        
+    }
+
+    public function postCheckOut(Request $req){
+
+        $cart=Session::get('cart');
+
+        $customer=new Customer;
+        $customer->name=$req->name;
+        $customer->gender=$req->gender;
+        $customer->email=$req->email;
+        $customer->address=$req->address;
+        $customer->phone_number=$req->phone;
+        $customer->note=$req->notes;
+        $customer->save();
+
+        $bill=new Bills;
+        $bill->id_customer=$customer->id;
+        $bill->date_order=date('Y-m-d');
+        $bill->total=$cart->totalPrice;
+        $bill->payment=$req->payment_method;
+        $bill->note=$req->notes;
+        $bill->save();
+        
+
+        foreach($cart->items as $key=>$value){
+            $billDetail=new BillDetail;
+            $billDetail->id_bill=$bill->id;
+            $billDetail->id_product=$key;
+            $billDetail->quantity=$value['qty'];
+            $billDetail->unit_price=$value['price']/$value['qty'];
+            $billDetail->save();
+        }
+
+        Session::forget('cart');
+        return redirect()->back()->with('thongBao','Đặt hàng thành công');
     }
 }

@@ -49,3 +49,13 @@ Route::get('del-cart/{id}',[
     'as'=>'xoaGioHang',
     'uses'=>'PageController@getDelItemCart'
 ]);
+
+Route::get('dat-hang',[
+    'as'=>'datHang',
+    'uses'=>'PageController@getCheckOut'
+]);
+
+Route::post('dat-hang',[
+    'as'=>'datHang',
+    'uses'=>'PageController@postCheckOut'
+]);
