@@ -13,6 +13,7 @@ use App\Bills;
 use App\BillDetail;
 use App\User;
 use Hash;
+use Auth;
 
 class PageController extends Controller
 {
@@ -157,5 +158,34 @@ class PageController extends Controller
                         ->orWhere('unit_price',$req->key)
                         ->get();
         return view('page.search',compact('product'));
+    }
+
+    public function postLogin(Request $req){
+        $this->validate($req,
+        [
+            'email'=>'required|email',
+            'password'=>'required|min:6|max:20'
+        ],
+        [
+                'email.required'=>'Vui lòng nhập email',
+                'email.email'=>'Email không đúng định dạng',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                'password.min'=>'Mật khẩu phải chứa ít nhất 6 kí tự',
+                'password.max'=>'mật khẩu chỉ chứa tối đa 20 kí tự'
+        ]);
+
+            //Xác thực người dùng
+            $credentials=array('email'=>$req->email,'password'=>$req->pasword);
+            if(Auth::attempt($credentials)){
+                return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
+            }
+            else {
+                return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
+            }
+    }
+
+    public function postLogout(){
+        Auth::logout();
+        return redirect()->route('trang-chu');
     }
 }
