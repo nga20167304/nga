@@ -1925,10 +1925,10 @@ right:-3px
 .ribbon {
 color:#fff;
 text-align:center;
--webkit-transform:rotate(45deg);
+/*-webkit-transform:rotate(45deg);
 -moz-transform:rotate(45deg);
 -ms-transform:rotate(45deg);
--o-transform:rotate(45deg);
+-o-transform:rotate(45deg);*/
 position:relative;
 padding:4px 0;
 left:1px;
@@ -2350,7 +2350,7 @@ margin-top:25px
 
 .beta-filter-body li {
 display:inline-block;
-float:left;
+/*float:left;*/
 height:320px;
 position:relative;
 overflow:hidden;
@@ -4424,7 +4424,7 @@ line-height:40px
 }
 
 .beta-menu-toggle-text {
-float:left;
+/*float:left;*/
 margin-top:13px;
 line-height:100%;
 margin-right:10px;
@@ -4711,7 +4711,7 @@ html{overflow-x:hidden;}
 .auto-width-left ul li a{padding:0px;}
 .auto-width-right{width:41%;}
 .auto-width-right ul li a{padding:0px 4px;}
-.pull-left.auto-width:{width:auto!important;}
+/*.pull-left.auto-width:{width:auto!important;}*/
 .beta-comp from{width:70%!important;}
 a#logo img{max-width:45%!important;}
 .beta-rotator canvas{width:98%!important;}
@@ -4956,14 +4956,14 @@ border-bottom: 10px solid transparent;}
 
 /**** disabling Isotope CSS3 transitions ****/
 
-.isotope.no-transition,
+/*.isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
     -webkit-transition-duration: 0s;
     -moz-transition-duration: 0s;
     -ms-transition-duration: 0s;
     -o-transition-duration: 0s;
-}
+}*/
 #portfolioitems{width:101%;}
 .portfolioitems-holder{overflow:hidden;}
 .beta-filter ul#filters li{list-style:none; display: inline;}
@@ -5066,7 +5066,7 @@ transition: all 0.17s ease-in-out;
     -moz-transition: all 0.17s ease-in-out;
     -webkit-transition: all 0.17s ease-in-out;
     -o-transition: all 0.17s ease-in-out;
-    -webkit-backface-visibility: hidden;}
+    /*-webkit-backface-visibility: hidden;*/}
 .sub-menu{z-index:999;top: 31px;
 transition: all 0.17s ease-in-out;
     -moz-transition: all 0.17s ease-in-out;
