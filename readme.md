@@ -69,3 +69,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+Cách mở và sử dụng
+Ứng dụng cần có:xampp
+Tải code về,khởi động xampp(Apache và MySQL)
+Mở bất kỳ 1 trình duyệt nào và gõ localhost/nga/public/index để thấy được giao diện đầu tiên
