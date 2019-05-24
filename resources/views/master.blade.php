@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Laravel </title>
+	<title>CAKE</title>
 	<base href="{{asset('')}}">
 	<link href='source/assets/dest/css/font.css' rel='stylesheet' type='text/css'>
 	<link href='source/assets/dest/css/font1.css' rel='stylesheet' type='text/css'>
